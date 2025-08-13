@@ -5,11 +5,8 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chains.question_answering import load_qa_chain
 from sklearn.metrics.pairwise import cosine_similarity
-from langchain_community.vectorstores import FAISS
 from .llm_service import init_llm, init_embedding
-from langchain_huggingface import HuggingFaceEmbeddings
 from app.prompts.chiron_overview_prompt import CHIRON_PROMPT
-from app.models.healing_model import ChironAnalysisResponse
 from app.utils.chiron_parser import parse_chiron_text
 from concurrent.futures import ThreadPoolExecutor
 
@@ -118,7 +115,6 @@ class QAAccuracyTester:
           input_documents=combined_docs
       )
       formatedAnswer=parse_chiron_text(raw_answer)
-      print("formatedAnswer-->",formatedAnswer)
 
       return formatedAnswer
     
